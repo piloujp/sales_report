@@ -292,7 +292,7 @@ $valid_sort_orders = ['asc', 'desc'];
 
 // process the search criteria
 $timeframe = (isset($_GET['timeframe']) && in_array($_GET['timeframe'], ['year', 'month', 'week', 'day'])) ? $_GET['timeframe'] : 'year';
-$timeframe_sort = (isset($_GET['timeframe_sort']) && in_array($_GET['timeframe_sort'], $valid_sort_orders)) ? $_GET['timeframe_sort'] : 'asc';
+$timeframe_sort = (isset($_GET['timeframe_sort']) && in_array($_GET['timeframe_sort'], $valid_sort_orders)) ? $_GET['timeframe_sort'] : SEARCH_TIMEFRAME_SORT_ASC;
 
 $li_sort_a = (isset($_GET['li_sort_a']) && in_array($_GET['li_sort_a'], $valid_sorts)) ? $_GET['li_sort_a'] : $sort_default;
 $li_sort_order_a = (isset($_GET['li_sort_order_a']) && in_array($_GET['li_sort_order_a'], $valid_sort_orders)) ? $_GET['li_sort_order_a'] : 'asc';
@@ -373,7 +373,7 @@ if ($output_format === false) {
     if ($output_format !== 'none') {
         $sr_parms = [
             'timeframe' => $timeframe,
-            'timeframe_sort' => $timeframe_sort,
+            'timeframe_sort' => ($timeframe_sort === SEARCH_TIMEFRAME_SORT_DESC) ? 'desc' : 'asc',
             'start_date' => $start_date,
             'end_date' => $end_date,
             'date_target' => $date_target,
@@ -694,8 +694,8 @@ if ($output_format === 'print') {
                             </tr>
                             <tr>
                                 <td class="smallText"><?=
-                                    zen_draw_radio_field('timeframe_sort', 'asc', $timeframe_sort === 'asc') . sales_report2::getUpArrowIcon() . RADIO_TIMEFRAME_SORT_ASC . '<br>' .
-                                    zen_draw_radio_field('timeframe_sort', 'desc', $timeframe_sort !== 'asc') . sales_report2::getDownArrowIcon() . RADIO_TIMEFRAME_SORT_DESC ?>
+                                    zen_draw_radio_field('timeframe_sort', SEARCH_TIMEFRAME_SORT_ASC, $timeframe_sort === SEARCH_TIMEFRAME_SORT_ASC) . sales_report2::getUpArrowIcon() . RADIO_TIMEFRAME_SORT_ASC . '<br>' .
+                                    zen_draw_radio_field('timeframe_sort', SEARCH_TIMEFRAME_SORT_DESC, $timeframe_sort !== SEARCH_TIMEFRAME_SORT_DESC) . sales_report2::getDownArrowIcon() . RADIO_TIMEFRAME_SORT_DESC ?>
                                 </td>
                             </tr>
                         </table></td>
@@ -792,7 +792,7 @@ if ($output_format === 'print') {
 if ($output_format === 'print' || $output_format === 'display') {
     // timeframes are in ascending order by default, so we only
     // need to make changes if the user requests descending order
-    if ($timeframe_sort === 'desc') {
+    if ($timeframe_sort === SEARCH_TIMEFRAME_SORT_DESC) {
         krsort($sr->timeframe);
     }
 
