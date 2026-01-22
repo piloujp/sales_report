@@ -220,7 +220,7 @@ if ($date_custom === '1') {
 
 $dt = DateTime::createFromFormat($datepicker_format, $start_date);
 if ($dt === false) {
-    $dt = DateTime::createFromFormat($datepicker_format, date($datepicker_format, strtotime('first day of this month', $today_timestamp)));
+    $start_date = date($datepicker_format, strtotime('first day of this month', $today_timestamp));
 }
 
 $dt = DateTime::createFromFormat($datepicker_format, $end_date);

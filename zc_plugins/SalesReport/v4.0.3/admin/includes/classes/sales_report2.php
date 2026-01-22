@@ -138,8 +138,8 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
         //
         $sd = $parms['start_date'];
         $ed = $parms['end_date'];
-        $this->sd_raw = strtotime($sd . ' 00:00:00');
-        $this->ed_raw = strtotime($ed . ' 00:00:00');
+        $this->sd_raw = strtotime(zen_date_raw($sd) . ' 00:00:00');
+        $this->ed_raw = strtotime(zen_date_raw($ed) . ' 00:00:00');
 
         // run a few checks on the dates
         // avoid dates before the first order
@@ -1097,20 +1097,20 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
             // format the dates
             switch ($this->timeframe_group) {
                 case 'day':
-                    $start_date = date(TIME_DISPLAY_DAY, $timeframe['sd']);
-                    $end_date = date(TIME_DISPLAY_DAY, $timeframe['ed']);
+                    $start_date = date(DATE_FORMAT, $timeframe['sd']);
+                    $end_date = date(DATE_FORMAT, $timeframe['ed']);
                     break;
                 case 'week':
-                    $start_date = date(TIME_DISPLAY_WEEK, $timeframe['sd']);
-                    $end_date = date(TIME_DISPLAY_WEEK, $timeframe['ed']);
+                    $start_date = date(DATE_FORMAT, $timeframe['sd']);
+                    $end_date = date(DATE_FORMAT, $timeframe['ed']);
                     break;
                 case 'month':
-                    $start_date = date(TIME_DISPLAY_MONTH, $timeframe['sd']);
-                    $end_date = date(TIME_DISPLAY_MONTH, $timeframe['ed']);
+                    $start_date = date(DATE_FORMAT, $timeframe['sd']);
+                    $end_date = date(DATE_FORMAT, $timeframe['ed']);
                     break;
                 case 'year':
-                    $start_date = date(TIME_DISPLAY_YEAR, $timeframe['sd']);
-                    $end_date = date(TIME_DISPLAY_YEAR, $timeframe['ed']);
+                    $start_date = date(DATE_FORMAT, $timeframe['sd']);
+                    $end_date = date(DATE_FORMAT, $timeframe['ed']);
                     break;
             }
             switch ($this->detail_level) {
