@@ -3,16 +3,16 @@
  * Sales Report II, v4.0.0
  *
  * All the javascript code specific to the Sales Report resides in this file. Covers the reports
- * on-screen dynamic abilities and pre-launch form checking. 
+ * on-screen dynamic abilities and pre-launch form checking.
  *
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
- * @updated by stellarweb to work with version 1.5.0 02-29-12 
+ * @updated by stellarweb to work with version 1.5.0 02-29-12
  * @updated by lat9, converting to use jQuery
  * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
- *  
+ *
  * author Czech translation :  Josef Zahradník
  * web:                        www.magic-shop.cz
  */
@@ -183,7 +183,7 @@ $(document).ready(function(){
     $('#output-format').on('change', function(){
         updatePrintCsvSelections();
     });
-    
+
     $('#display-email-address').on('change', function(){
         updateEmailSorts();
     });

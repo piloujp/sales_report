@@ -4,17 +4,17 @@
  *
  * The class file acts as the engine in the sales report.  All the data displayed is gathered and
  * calculated in here. The logic tree provides a brief summary of the main functions at work every
- * time a report is generated. 
+ * time a report is generated.
  *
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @author     Carl Peach <carlvt88 at zen-cart.com/forum>
- * @updated by stellarweb to work with version 1.5.0 02-29-12 
+ * @updated by stellarweb to work with version 1.5.0 02-29-12
  * @updated by lat9, for continued operation for zc155/zc156, 20190622
  * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
- *  
+ *
  * update:  Josef Zahradník
  * web:     www.magic-shop.cz
  */
@@ -268,7 +268,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
                 o.orders_id, o.currency, o.order_total, o.customers_id, o.customers_name, o.delivery_country, o.delivery_state,
                 o.cc_type, o.payment_method, o.payment_module_code, o.shipping_method, o.shipping_module_code' . $conditional_fields .
              ' FROM ' . TABLE_ORDERS . ' o' . PHP_EOL;
-        
+
         if ($this->manufacturer !== 0 || ($this->doProdInc && !empty($this->prod_includes))) {
             $sql .= ' LEFT JOIN ' . TABLE_ORDERS_PRODUCTS . ' op ON o.orders_id = op.orders_id' . PHP_EOL;
         }
@@ -384,7 +384,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
 
         // if we have to filter on manufacturer, the SQL is totally different
         if ($this->manufacturer !== 0) {
-            $products_sql = 
+            $products_sql =
                 "SELECT op.orders_products_id, op.products_id, op.products_price,
                         op.final_price, op.products_quantity, op.products_tax,
                         op.onetime_charges, op.products_model, op.products_name
@@ -394,7 +394,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
                   WHERE p.manufacturers_id = {$this->manufacturer}
                     AND op.orders_id = $oID" . $this->product_filter;
         } else {
-            $products_sql = 
+            $products_sql =
                 "SELECT op.orders_products_id, op.products_id, op.products_price,
                         op.final_price, op.products_quantity, op.products_tax,
                         op.onetime_charges, op.products_model, op.products_name
@@ -454,7 +454,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
 
                 $this->timeframe[$id]['total']['goods'] += $product_price_exc_tax;
                 $this->build_li_orders($next_sale, 'goods', $product_price_exc_tax);
- 
+
                 $this->timeframe[$id]['total']['goods_tax'] += $product_tax;
                 $this->build_li_orders($next_sale, 'goods_tax', $product_tax );
 
@@ -631,7 +631,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
 
             if ($this->detail_level === 'order' || $this->detail_level === 'matrix') {
                 $this->build_li_orders($next_sale, 'grand', $order_total);
-          
+
                 // Build order total verification column if requested
                 if ($this->order_total_validation === true) {
                     // Get the recorded order total
@@ -1134,7 +1134,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
                     $line[] = $timeframe['total']['gc_sold'];
                     $line[] = $timeframe['total']['gc_used'];
                     $line[] = $timeframe['total']['grand'];
-                    
+
                     $this->outputCsvLine($line);
                     break;
 
@@ -1146,7 +1146,7 @@ ORDER BY orders_id, orders_status_id, date_added) '. PHP_EOL;
                     if (empty($timeframe['products'])) {
                         break;
                     }
-                    
+
                     // sort the products according to requested sort options
                     $dataset1 = [];
                     $dataset2 = [];

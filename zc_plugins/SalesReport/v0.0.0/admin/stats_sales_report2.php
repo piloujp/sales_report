@@ -8,7 +8,7 @@
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @author     Carl Peach <carlvt88 at zen-cart.com/forum>
- * @updated by stellarweb to work with version 1.5.0 02-29-12 
+ * @updated by stellarweb to work with version 1.5.0 02-29-12
  * @updated by lat9, for continued operation for zc155/zc156, 20190622
  * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
@@ -81,7 +81,7 @@ $payments_array[] = [
     'text' => TEXT_EMPTY_SELECT
 ];
 $payments = $db->Execute(
-    "SELECT DISTINCT payment_method, payment_module_code 
+    "SELECT DISTINCT payment_method, payment_module_code
        FROM " . TABLE_ORDERS
 );
 foreach ($payments as $next_payment) {
@@ -99,7 +99,7 @@ unset($payments, $next_payment);
 if ($output_format !== 'print') {
     $manufacturers = $db->Execute(
         "SELECT manufacturers_id, manufacturers_name
-           FROM " . TABLE_MANUFACTURERS . " 
+           FROM " . TABLE_MANUFACTURERS . "
        ORDER BY manufacturers_name ASC"
     );
     $manufacturer_array = [];
@@ -457,14 +457,14 @@ if ($output_format === 'print') {
             </tr>
         </table></td>
         <td class="text-right"><table>
-<?php 
+<?php
     if ($payment_method !== '0') {
 ?>
             <tr>
                 <td class="smalltext"><?= PRINT_PAYMENT_METHOD ?></td>
                 <td class="smalltext"><?= $payment_key[$payment_method] ?></td>
             </tr>
-<?php 
+<?php
     }
 
     if ($payment_method_omit !== '0') {
@@ -473,7 +473,7 @@ if ($output_format === 'print') {
                 <td class="smalltext"><?= PRINT_PAYMENT_METHOD ?></td>
                 <td class="smalltext"><?= $payment_key[$payment_method] ?></td>
             </tr>
-<?php 
+<?php
     }
 
     if ($current_status !== 0) {
@@ -482,7 +482,7 @@ if ($output_format === 'print') {
                 <td class="smalltext"><?= PRINT_CURRENT_STATUS ?></td>
                 <td class="smalltext"><?= sprintf(PRINT_ORDER_STATUS, $status_key[$current_status], $current_status) ?></td>
             </tr>
-<?php 
+<?php
 }
 ?>
         </table><td/>
@@ -652,7 +652,7 @@ if ($output_format === 'print') {
                                     <?= zen_draw_pull_down_menu('excluded_status', array_merge($empty_select, $status_array), $excluded_status, 'id="excluded-status"') ?>
                                 </td>
                             </tr>
-<?php 
+<?php
     if (count($manufacturer_array) !== 0) {
 ?>
                             <tr>
@@ -662,7 +662,7 @@ if ($output_format === 'print') {
                                     <?= zen_draw_pull_down_menu('manufacturer', $manufacturer_array, $manufacturer, 'id="manufacturer"') ?>
                                 </td>
                             </tr>
-<?php 
+<?php
 }
 ?>
                         </table></td>
@@ -787,7 +787,7 @@ if ($output_format === 'print') {
             <td><?= zen_draw_separator('pixel_trans.gif', 1, 15) ?></td>
             <td id="td_wait_text" class="alert text-right"><?= SEARCH_WAIT_TEXT ?>&nbsp;&nbsp;</td>
         </tr>
-<?php 
+<?php
 }  // END <?php if ( (!$output_format || $output_format = 'display') && $output_format != 'print')
 
 if ($output_format === 'print' || $output_format === 'display') {
@@ -803,7 +803,7 @@ if ($output_format === 'print' || $output_format === 'display') {
     if ($output_format === 'display') {
 ?>
         <tr>
-<?php 
+<?php
         if ($doCustInc === true || $doProdInc === true) {
             // if reporting for a specific product, build up a string of product descriptions
             $i = 0;
@@ -812,11 +812,11 @@ if ($output_format === 'print' || $output_format === 'display') {
                 $include_products = explode(',', $prod_includes);
                 foreach ($include_products as $pID) {
                     if (empty((int)$pID)) {
-                        continue; 
+                        continue;
                     }
                     $tempAry = $db->Execute(
-                        "SELECT DISTINCT pd.products_name 
-                           FROM " . TABLE_PRODUCTS_DESCRIPTION . " pd 
+                        "SELECT DISTINCT pd.products_name
+                           FROM " . TABLE_PRODUCTS_DESCRIPTION . " pd
                           WHERE products_id = " . (int)$pID
                     );
                     if ($i === 0) {
@@ -837,8 +837,8 @@ if ($output_format === 'print' || $output_format === 'display') {
                         continue;
                     }
                     $tempAry = $db->Execute(
-                        "SELECT DISTINCT c.customers_firstname, c.customers_lastname 
-                           FROM " . TABLE_CUSTOMERS . " c 
+                        "SELECT DISTINCT c.customers_firstname, c.customers_lastname
+                           FROM " . TABLE_CUSTOMERS . " c
                           WHERE customers_id = " . (int)$cID
                     );
                     if ($i === 0) {
@@ -882,12 +882,12 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="totalHeadingContent"><?= TABLE_HEADING_NUM_ORDERS ?></td>
                     <td class="totalHeadingContent text-center" colspan="2"><?= TABLE_HEADING_NUM_PRODUCTS ?></td>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_TOTAL_GOODS ?></td>
-<?php 
+<?php
         if ($display_tax === true) {
 ?>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_GOODS_TAX ?></td>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_ORDER_RECORDED_TAX ?></td>
-<?php 
+<?php
         }
 ?>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_SHIPPING ?></td>
@@ -932,12 +932,12 @@ if ($output_format === 'print' || $output_format === 'display') {
 ?>
                     <td class="totalHeadingContent text-center" colspan="<?= ($display_email_address === true) ? 3 : 2 ?>"><?= TABLE_HEADING_NUM_PRODUCTS ?></td>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_TOTAL_GOODS ?></td>
-<?php 
+<?php
             if ($display_tax === true) {
 ?>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_GOODS_TAX ?></td>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_ORDER_RECORDED_TAX ?></td>
-<?php 
+<?php
             }
 ?>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_SHIPPING ?></td>
@@ -945,11 +945,11 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="totalHeadingContent text-center" colspan="2"><?= TABLE_HEADING_GC_SOLD ?></td>
                     <td class="totalHeadingContent text-center" colspan="2"><?= TABLE_HEADING_GC_USED ?></td>
                     <td class="totalHeadingContent text-right"><?= TABLE_HEADING_TOTAL ?></td>
-<?php 
+<?php
             if ($sr->detail_level === 'order' && $order_total_validation === true) {
 ?>
                     <td class="totalHeadingContent text-right">&nbsp;</td>
-<?php 
+<?php
             }
 ?>
                 </tr>
@@ -972,12 +972,12 @@ if ($output_format === 'print' || $output_format === 'display') {
                         <?= $timeframe['total']['num_products'] . TEXT_DIFF . count($timeframe['total']['diff_products']) ?>
                     </td>
                     <td class="totalContent text-right"><?= $currencies->format($timeframe['total']['goods']) ?></td>
-<?php 
+<?php
             if ($display_tax) {
 ?>
                     <td class="totalContent text-right"><?= $currencies->format($timeframe['total']['goods_tax']) ?></td>
                     <td class="totalContent text-right"><?= $currencies->format($timeframe['total']['order_recorded_tax']) ?></td>
-<?php 
+<?php
             }
 ?>
                     <td class="totalContent text-right"><?= $currencies->format($timeframe['total']['shipping']) ?></td>
@@ -988,11 +988,11 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="totalContent text-right"><?= $currencies->format($timeframe['total']['gc_used']) ?></td>
                     <td class="totalContent no-wrap"><?= TEXT_QTY . $timeframe['total']['gc_used_qty'] ?></td>
                     <td class="totalContent text-right"><?= $currencies->format($timeframe['total']['grand']) ?></td>
-<?php 
+<?php
             if ($sr->detail_level === 'order' && $order_total_validation === true) {
 ?>
                     <td class="totalContent text-right">&nbsp;</td>
-<?php 
+<?php
             }
 ?>
                 </tr>
@@ -1066,7 +1066,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="lineItemHeadingContent text-right">
                         <?= TABLE_HEADING_TOTAL_GOODS . show_arrow('goods') ?>
                     </td>
-<?php 
+<?php
             if ($display_tax === true) {
 ?>
                     <td class="lineItemHeadingContent text-right">
@@ -1075,7 +1075,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="lineItemHeadingContent text-right">
                         <?= TABLE_HEADING_ORDER_RECORDED_TAX ?>
                     </td>
-<?php 
+<?php
             }
 ?>
                     <td class="lineItemHeadingContent text-right">
@@ -1093,13 +1093,13 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="lineItemHeadingContent text-right">
                         <?= TABLE_HEADING_ORDER_TOTAL . show_arrow('grand') ?>
                     </td>
-<?php 
+<?php
             if ($order_total_validation === true) {
 ?>
                     <td class="lineItemHeadingContent ValidationColumnHeader text-right">
                         <?= TABLE_HEADING_ORDER_TOTAL_VALIDATION ?>
                     </td>
-<?php 
+<?php
             }
 ?>
                 </tr>
@@ -1151,7 +1151,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="lineItemContent text-right">
                         <?= $currencies->format($o_data['goods']) ?>
                     </td>
-<?php 
+<?php
                 if ($display_tax === true) {
 ?>
                     <td class="lineItemContent text-right">
@@ -1160,7 +1160,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="lineItemContent text-right">
                         <?= $currencies->format($o_data['order_recorded_tax']) ?>
                     </td>
-<?php 
+<?php
                 }
 ?>
                     <td class="lineItemContent text-right">
@@ -1187,13 +1187,13 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="lineItemContent text-right">
                         <?= $currencies->format($o_data['grand']) ?>
                     </td>
-<?php 
+<?php
                 if ($order_total_validation === true) {
 ?>
                     <td class="lineItemContent ValidationColumnContent text-right">
                         <?= $o_data['order_total_validation'] ?>
                     </td>
-<?php 
+<?php
                 }
 ?>
                 </tr>
@@ -1240,13 +1240,13 @@ if ($output_format === 'print' || $output_format === 'display') {
                             <td class="lineItemHeadingContent">
                                 <?= TABLE_HEADING_PRODUCT_ATTRIBUTES . show_arrow('attributes') ?>
                             </td>
-<?php 
+<?php
             if (DISPLAY_MANUFACTURER) {
 ?>
                             <td class="lineItemHeadingContent">
                                 <?= TABLE_HEADING_MANUFACTURER . show_arrow('manufacturer') ?>
                             </td>
-<?php 
+<?php
             }
 ?>
                             <td class="lineItemHeadingContent">
@@ -1261,27 +1261,27 @@ if ($output_format === 'print' || $output_format === 'display') {
                             <td class="lineItemHeadingContent text-right">
                                 <?= TABLE_HEADING_QUANTITY . show_arrow('quantity') ?>
                             </td>
-<?php 
+<?php
             if ($display_tax === true) {
 ?>
                             <td class="lineItemHeadingContent text-right">
                                 <?= TABLE_HEADING_TAX ?>
                             </td>
-<?php 
+<?php
             }
             if (DISPLAY_ONE_TIME_FEES) {
 ?>
                             <td class="lineItemHeadingContent text-right">
                                 <?= TABLE_HEADING_ONETIME_CHARGES . show_arrow('onetime_charges') ?>
                             </td>
-<?php 
+<?php
             }
             if ($display_tax === true) {
 ?>
                             <td class="lineItemHeadingContent text-right">
                                 <?= TABLE_HEADING_TOTAL ?>
                             </td>
-<?php 
+<?php
             }
 ?>
                             <td class="lineItemHeadingContent text-right">
@@ -1301,13 +1301,13 @@ if ($output_format === 'print' || $output_format === 'display') {
                             <td class="lineItemContent">
                                 <?= $p_data['attributes'] ?>
                             </td>
-<?php 
+<?php
                 if (DISPLAY_MANUFACTURER) {
 ?>
                             <td class="lineItemContent">
                                 <?= $p_data['manufacturer'] ?>
                             </td>
-<?php 
+<?php
                 }
 ?>
                             <td class="lineItemContent">
@@ -1322,27 +1322,27 @@ if ($output_format === 'print' || $output_format === 'display') {
                             <td class="lineItemContent text-right">
                                 <?= $p_data['quantity'] ?>
                             </td>
-<?php 
+<?php
                 if ($display_tax === true) {
 ?>
                             <td class="lineItemContent text-right">
                                 <?= $currencies->format($p_data['tax']) ?>
                             </td>
-<?php 
+<?php
                 }
                 if (DISPLAY_ONE_TIME_FEES) {
 ?>
                             <td class="lineItemContent text-right">
                                 <?= $currencies->format($p_data['onetime_charges']) ?>
                             </td>
-<?php 
+<?php
                 }
                 if ($display_tax === true) {
 ?>
                             <td class="lineItemContent text-right">
                                 <?= $currencies->format($p_data['total']) ?>
                             </td>
-<?php 
+<?php
                 }
 ?>
                             <td class="lineItemContent text-right">
@@ -1489,7 +1489,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <strong><?= MATRIX_TOTAL_PAYMENTS ?></strong>
                                     </td>
                                 </tr>
-<?php 
+<?php
             foreach ($timeframe['matrix']['payment_methods'] as $key => $payment) {
 ?>
                                 <tr>
@@ -1503,7 +1503,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <?= $payment['count'] ?>
                                     </td>
                                 </tr>
-<?php 
+<?php
             }
 ?>
                             </table></td>
@@ -1513,7 +1513,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <strong><?= MATRIX_TOTAL_CC ?></strong>
                                     </td>
                                 </tr>
- <?php 
+ <?php
             foreach ($timeframe['matrix']['credit_cards'] as $key => $cc) {
  ?>
                                 <tr>
@@ -1524,7 +1524,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <?= $cc['count'] ?>
                                     </td>
                                 </tr>
-<?php 
+<?php
             }
 ?>
                             </table></td>
@@ -1534,7 +1534,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <strong><?= MATRIX_TOTAL_SHIPPING ?></strong>
                                     </td>
                                 </tr>
-<?php 
+<?php
             foreach ($timeframe['matrix']['shipping_methods'] as $key => $shipping) {
 ?>
                                 <tr>
@@ -1548,11 +1548,11 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <?= $shipping['count'] ?>
                                     </td>
                                 </tr>
-<?php 
+<?php
             }
 ?>
                             </table></td>
-<?php 
+<?php
             if (count($timeframe['matrix']['currencies']) !== 0) {
 ?>
                             <td><table class="table">
@@ -1561,7 +1561,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <strong><?= MATRIX_TOTAL_CURRENCIES ?></strong>
                                     </td>
                                 </tr>
-<?php 
+<?php
                 foreach ($timeframe['matrix']['currencies'] as $key => $currency) {
 ?>
                                 <tr>
@@ -1572,11 +1572,11 @@ if ($output_format === 'print' || $output_format === 'display') {
                                         <?= $currency['count'] ?>
                                     </td>
                                 </tr>
-<?php 
+<?php
                 }
 ?>
                             </table></td>
-<?php 
+<?php
             }
 ?>
                         </tr>
@@ -1655,7 +1655,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="totalHeadingContent text-right">
                         <?= TABLE_HEADING_TOTAL_GOODS ?>
                     </td>
-<?php 
+<?php
             if ($display_tax === true) {
 ?>
                     <td class="totalHeadingContent text-right">
@@ -1664,7 +1664,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="totalHeadingContent text-right">
                         <?= TABLE_HEADING_ORDER_RECORDED_TAX ?>
                     </td>
-<?php 
+<?php
             }
 ?>
                     <td class="totalHeadingContent text-right">
@@ -1682,15 +1682,15 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="totalHeadingContent text-right">
                         <?= TABLE_HEADING_TOTAL ?>
                     </td>
-<?php 
+<?php
             if ($sr->detail_level === 'order' && $order_total_validation === true) {
 ?>
                     <td class="totalHeadingContent text-right">&nbsp;</td>
-<?php 
+<?php
             }
 ?>
                 </tr>
-<?php 
+<?php
         }
 ?>
       <!-- GRAND TOTAL LINE -->
@@ -1707,7 +1707,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="footerContent text-right">
                         <?= $currencies->format($sr->grand_total['goods']) ?>
                     </td>
-<?php 
+<?php
         if ($display_tax === true) {
 ?>
                     <td class="footerContent text-right">
@@ -1716,7 +1716,7 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="footerContent text-right">
                         <?= $currencies->format($sr->grand_total['order_recorded_tax']) ?>
                     </td>
-<?php 
+<?php
         }
 ?>
                     <td class="footerContent text-right">
@@ -1743,11 +1743,11 @@ if ($output_format === 'print' || $output_format === 'display') {
                     <td class="footerContent text-right">
                         <?= $currencies->format($sr->grand_total['grand']) ?>
                     </td>
-<?php 
+<?php
         if ($sr->detail_level === 'order' && $order_total_validation === true) {
 ?>
                     <td class="footerContent">&nbsp;</td>
-<?php 
+<?php
         }
 ?>
                 </tr>
@@ -1789,7 +1789,7 @@ if ($output_format === 'print' || $output_format === 'display') {
 }  // END if ($output_format == 'print' || $output_format == 'display')
 ?>
     </table><?= '</form>' ?>
-<?php 
+<?php
 if ($output_format !== 'print') {
     require DIR_WS_INCLUDES . 'footer.php';
 ?>
